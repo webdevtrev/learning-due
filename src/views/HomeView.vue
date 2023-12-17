@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import MainBanner from '../components/MainBanner.vue';
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <main-banner heading="Welcome to my VueJS training grounds"
+    subheading="Feel free to check out these demos I have created to practice VueJS" />
 </template>

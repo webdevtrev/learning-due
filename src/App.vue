@@ -1,85 +1,35 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import SunIcon from './components/icons/SunIcon.vue';
+import MoonIcon from './components/icons/MoonIcon.vue';
+import VueIcon from './components/icons/VueIcon.vue';
+const darkMode = ref(localStorage.darkMode !== undefined ? localStorage.darkMode : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches));
+watch(darkMode, (newVal) => {
+  window.localStorage.darkMode = newVal;
+});
 </script>
 
+
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
+  <div :class="{ 'dark bg-slate text-white': darkMode, 'bg-slate': darkMode }" class="flex flex-col">
+    <header class="flex gap-4 items-center w-full max-w-5xl m-auto p-3 py-10">
+      <span class="flex items-center gap-2 grow"><vue-icon />Trevor's Vue Practice</span>
+      <button @click="darkMode = !darkMode"
+        class="flex gap-1 items-center border-solid border-2 border-black dark:border-white rounded-lg p-1">
+        <span>Theme:</span>
+        <sun-icon v-if="!darkMode" />
+        <moon-icon v-else />
+      </button>
+      <nav class="flex gap-2">
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+        <RouterLink to="/demos">Demos</RouterLink>
 
-  <RouterView />
+      </nav>
+    </header>
+    <main class="max-w-5xl w-full m-auto p-3 ">
+      <RouterView />
+    </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
