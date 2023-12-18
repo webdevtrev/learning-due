@@ -12,9 +12,9 @@ watch(darkMode, (newVal) => {
 
 
 <template>
-  <div :class="{ 'dark bg-slate text-white': darkMode, 'bg-slate': darkMode }" class="flex flex-col">
+  <div :class="{ 'dark bg-slate text-white': darkMode, 'bg-slate': darkMode }" class="flex flex-col min-h-screen">
     <header class="flex gap-4 items-center w-full max-w-5xl m-auto p-3 py-10">
-      <span class="flex items-center gap-2 grow"><vue-icon />Trevor's Vue Practice</span>
+      <RouterLink to="/" class="flex items-center gap-2 grow"><vue-icon />Trevor's Vue Practice</RouterLink>
       <button @click="darkMode = !darkMode"
         class="flex gap-1 items-center border-solid border-2 border-black dark:border-white rounded-lg p-1">
         <span>Theme:</span>
@@ -24,10 +24,9 @@ watch(darkMode, (newVal) => {
       <nav class="flex gap-2">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/demos">Demos</RouterLink>
-
       </nav>
     </header>
-    <main class="max-w-5xl w-full m-auto p-3 ">
+    <main class="max-w-5xl w-full m-auto p-3 grow">
       <RouterView />
     </main>
   </div>

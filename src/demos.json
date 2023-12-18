@@ -1,3 +1,6 @@
 [
-    {"title": "State Handling with Forms", "link": "state-with-forms"}
+    {
+        "title": "State Handling with Forms",
+        "description": "I run through various and take a look at strategies to cleanly extract state from the inputs as the user interacts with them.",
+        "link": "state-with-forms"}
 ]

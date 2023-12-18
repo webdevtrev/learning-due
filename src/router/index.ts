@@ -24,6 +24,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/DemosView.vue')
+    },
+    {
+      path: '/demos/state-with-forms',
+      name: 'state-with-forms',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/FormsView.vue')
     }
   ]
 })
